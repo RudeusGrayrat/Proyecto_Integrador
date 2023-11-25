@@ -1,15 +1,15 @@
 import { useState } from 'react'
 import './App.css'
-import Cards from './components/Cards.jsx'
-import Nav from './components/Nav.jsx'
-import  styles  from "./components/Nav.module.css";
+import Cards from './components/Cards/Cards.jsx'
+import Nav from './components/Nav/Nav.jsx'
+import  styles  from "./components/Nav/Nav.module.css";
 import axios from "axios";
 
 function App () {
   const [characters, setCharacters] = useState([])
   
   const onSearch = (id)=>{
-    axios(`http://localhost:3001/rickandmorty/character/${id}`)
+    axios(`https://rickandmortyapi.com/api/character/${id}`)
       .then((response)=>{
         const data = response.data
         if (data.name) {

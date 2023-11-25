@@ -1,4 +1,4 @@
-import SearchBar  from "./SearchBar";
+import SearchBar  from "../SearchBar/SearchBar";
 import  styles  from "./Nav.module.css";
 export default function Nav(props) {
     const {onSearch} = props
