@@ -21,7 +21,7 @@ const Card = (props) => {
          addFav(props)
       }
    }
-   
+
    useEffect(() => {
       myFavorites.forEach((fav) => {
          if (fav.id === props.id) {
@@ -33,13 +33,9 @@ const Card = (props) => {
    return (
       <div className={styles.card}>
          <div className={styles.divButton}>
-            {
-               isFav ? (
-                  <button onClick={handleFavorite}>❤️</button>
-               ) : (
-                  <button onClick={handleFavorite}>🤍</button>
-               )
-            }
+            <button onClick={handleFavorite}>
+               {isFav ? '❤️' : '🤍'}
+               </button>
             <button
                className={styles.buttonX}
                onClick={() => onClose(id)}>

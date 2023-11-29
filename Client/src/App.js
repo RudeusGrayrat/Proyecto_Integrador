@@ -8,26 +8,27 @@ import Form from "./components/Form/Form";
 import Favorites from "./components/Favorites/Favorites";
 import Error from "./components/Error/Error";
 import { useEffect, useState } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
-
+import { Routes, Route, useNavigate } from 'react-router-dom'
 
 function App() {
    const navigate = useNavigate()
    const [access, setAccess] = useState(false)
-   const email = "a@gmail.com"
-   const password = "1234567"
-   const login = (userData) => {
-      if (userData.email === email && userData.password === password) {
-         setAccess(true)
-         navigate("/home")
-      }
+   const [characters, setCharacters] = useState([])
+
+   function login(userData) {
+      const { email, password } = userData;
+      const URL = 'http://localhost:3001/rickandmorty/login/';
+      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+         const { access } = data;
+         setAccess(data);
+         access && navigate('/home');
+      });
    }
    const logout = () => {
       setAccess(false);
       navigate('/');
    };
 
-   const [characters, setCharacters] = useState([])
    const onSearch = (id) => {
       //extra, para que no se pueda repetir
       if (characters.some((char) => char.id === Number(id))) {
@@ -35,7 +36,7 @@ function App() {
          return;
       }
 
-      axios(`https://rickandmortyapi.com/api/character/${id}`)
+      axios(`http://localhost:3001/rickandmorty/character/${id}`)
          .then(
             ({ data }) => {
                if (data.name) {

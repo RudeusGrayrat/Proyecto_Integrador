@@ -1,5 +1,5 @@
-const initialState = {
-    myFavorites: []
+let initialState = {
+    myFavorites: [],
 }
 
 const rootReducer = (state = initialState, action) => {

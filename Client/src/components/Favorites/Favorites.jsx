@@ -7,13 +7,17 @@ const Fav = (props) => {
 
     return (
         <div className={styles.cards}>
-
-
             {myFavorites.map((char) => {
                 return (
                     <Card
                         key={char.id}
-                        {...char}
+                        id={char.id}
+                        name={char.name}
+                        status={char.status}
+                        species={char.species}
+                        gender={char.gender}
+                        origin={char.origin.name}
+                        image={char.image}
                     />
                 );
             })}
@@ -24,4 +28,4 @@ const mapStateToProps = (state) => ({
     myFavorites: state.myFavorites
 })
 
-export default connect(mapStateToProps)(Fav)
+export default connect(mapStateToProps, null)(Fav)
