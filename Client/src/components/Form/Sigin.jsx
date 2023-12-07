@@ -1,16 +1,17 @@
 import { useState } from 'react';
-import validate from "./Validation";
-import styles from './Form.module.css';
+import styles from "./Form.module.css";
 import { Link } from 'react-router-dom';
+import validate from "./Validation";
 
-export default function Form(props) {
-    const { login } = props
+export default function Sigin(props) {
+    const { sigin } = props
 
     const [errors, setErrors] = useState({})
     const [userData, setUseData] = useState({
         email: "",
         password: ""
     })
+    
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -24,13 +25,13 @@ export default function Form(props) {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        login(userData)
+        sigin(userData)
     }
 
     return (
         <div className={styles.todo}>
             <form className={styles.form}>
-                <h1>LOGIN</h1>
+                <h1>SINGIN</h1>
 
                 <label htmlFor='email' > Email:</label >
                 <input
@@ -63,15 +64,13 @@ export default function Form(props) {
 
                 <button type='submit'
                     className={styles.button}
-                    onClick={handleSubmit}>
-                        Log in
-                </button>
-                <p>¿No tienes una cuenta? 
-                    <Link to="/sigin">
-                        Regístrate
+                    onClick={handleSubmit}>Sing in</button>
+                <p>¿Tienes una cuenta?  
+                    <Link to="/">
+                        Login
                     </Link>
                 </p>
             </form >
         </div>
-    );
+    )
 }

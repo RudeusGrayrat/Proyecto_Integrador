@@ -5,6 +5,7 @@ import About from './components/About/About';
 import Nav from './components/Nav/Nav';
 import Detail from "./components/Detail/Detail";
 import Form from "./components/Form/Form";
+import Sigin from "./components/Form/Sigin";
 import Favorites from "./components/Favorites/Favorites";
 import Error from "./components/Error/Error";
 import { useEffect, useState } from 'react';
@@ -20,6 +21,18 @@ function App() {
       const URL = 'http://localhost:3001/rickandmorty/login/';
       try {
          const { data } = await axios(URL + `?email=${email}&password=${password}`)
+         const { access } = data;
+         setAccess(data);
+         access && navigate('/home');
+      } catch (error) {
+         console.error(error)
+      }
+   }
+
+   async function sigin(userData) {
+      const URL = 'http://localhost:3001/rickandmorty/login/';
+      try {
+         const { data } = await axios.post(URL, userData)
          const { access } = data;
          setAccess(data);
          access && navigate('/home');
@@ -65,7 +78,8 @@ function App() {
       <div className='App'>
          <Nav onSearch={onSearch} logout={logout} />
          <Routes>
-            <Route exatc path='/' element={<Form login={login} />} />
+            <Route path='/' element={<Form login={login} />} />
+            <Route path='/sigin' element={<Sigin sigin={sigin} />} />
             <Route path="/home" element={<Cards
                characters={characters}
                onClose={onClose} />} />

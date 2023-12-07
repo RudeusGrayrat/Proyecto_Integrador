@@ -5,7 +5,7 @@ import styles from './Nav.module.css';
 export default function Nav(props) {
    const { onSearch, logout } = props;
    const location = useLocation()
-   if (location.pathname === '/') {
+   if (location.pathname === '/' || location.pathname === "/sigin") {
       return null;
    }
    return (
